@@ -1,74 +1,119 @@
 import streamlit as st
-import pandas as pd
-import numpy as np
 
 st.set_page_config(
-    page_title="Ahmed Dashboard",
+    page_title="Ahmed Asran Portfolio",
     page_icon="🚀",
     layout="wide"
 )
 
-st.title("🚀 Ahmed Streamlit Production App")
+# ================= HEADER =================
 
-st.sidebar.header("Settings")
+st.title("🚀 Ahmed Asran")
+st.subheader("Data Engineering Student")
 
-option = st.sidebar.selectbox(
-    "Choose View",
-    ["Home", "Analytics", "Data"]
+st.write("""
+Passionate about Data Engineering, Big Data, and Real-Time Analytics.
+Interested in Kafka, Spark, Airflow, Python, and Streamlit.
+""")
+
+# ================= SIDEBAR =================
+
+st.sidebar.title("Navigation")
+
+section = st.sidebar.radio(
+    "Go To",
+    [
+        "Personal Info",
+        "Education",
+        "Skills",
+        "Training",
+        "Projects",
+        "Contact"
+    ]
 )
 
-# ================= HOME =================
-if option == "Home":
-    st.header("Welcome")
-    st.write("This is my production Streamlit application.")
+# ================= PERSONAL INFO =================
 
-    st.success("Application is running successfully!")
+if section == "Personal Info":
 
-    st.subheader("💬 Write Anything")
+    st.header("👤 Personal Information")
 
-    user_input = st.text_area(
-        "Enter your message here",
-        placeholder="Type something..."
-    )
+    st.write("**Name:** Ahmed Asran")
+    st.write("**Location:** Cairo, Egypt")
+    st.write("**University:** Helwan University")
+    st.write("**Major:** Computer Science")
+    st.write("**Track:** Data Engineering")
 
-    if st.button("Send"):
-        if user_input.strip() != "":
-            st.balloons()
-            st.success(f"You entered: {user_input}")
-        else:
-            st.warning("Please write something first.")
+# ================= EDUCATION =================
 
-# ================= ANALYTICS =================
-elif option == "Analytics":
-    st.header("📊 Analytics Dashboard")
+elif section == "Education":
 
-    data = pd.DataFrame(
-        np.random.randn(20, 3),
-        columns=["A", "B", "C"]
-    )
+    st.header("🎓 Education")
 
-    st.line_chart(data)
+    st.write("""
+    - Faculty of Computers and Artificial Intelligence
+    - Helwan University
+    - Level 2 Computer Science
+    """)
 
-    st.metric(label="Users", value="1,250", delta="+12%")
-    st.metric(label="Revenue", value="$5,400", delta="+8%")
+# ================= SKILLS =================
 
-# ================= DATA =================
-elif option == "Data":
-    st.header("📁 Data Table")
+elif section == "Skills":
 
-    df = pd.DataFrame({
-        "Name": ["Ahmed", "Ali", "Sara"],
-        "Age": [21, 22, 20],
-        "Department": ["Data", "AI", "Backend"]
-    })
+    st.header("💻 Skills")
 
-    st.dataframe(df)
+    skills = [
+        "Python",
+        "SQL",
+        "Streamlit",
+        "Pandas",
+        "NumPy",
+        "Kafka",
+        "Spark",
+        "Airflow",
+        "Git & GitHub"
+    ]
 
-    csv = df.to_csv(index=False).encode('utf-8')
+    for skill in skills:
+        st.success(skill)
 
-    st.download_button(
-        label="⬇ Download Data",
-        data=csv,
-        file_name='data.csv',
-        mime='text/csv',
-    )
+# ================= TRAINING =================
+
+elif section == "Training":
+
+    st.header("📚 Training & Courses")
+
+    st.write("""
+    - Data Engineering Fundamentals
+    - Python Programming
+    - SQL & Databases
+    - Kafka Basics
+    - Streamlit Development
+    """)
+
+# ================= PROJECTS =================
+
+elif section == "Projects":
+
+    st.header("🚀 Projects")
+
+    st.subheader("1. Streamlit Portfolio App")
+    st.write("Personal portfolio web application using Streamlit.")
+
+    st.subheader("2. Data Engineering Dashboard")
+    st.write("Analytics dashboard with charts and metrics.")
+
+    st.subheader("3. Kafka Streaming Project")
+    st.write("Real-time data streaming simulation.")
+
+# ================= CONTACT =================
+
+elif section == "Contact":
+
+    st.header("📞 Contact")
+
+    st.write("📧 Email: your-email@gmail.com")
+    st.write("🔗 LinkedIn: linkedin.com/in/your-profile")
+    st.write("💻 GitHub: github.com/Ahmedasran")
+
+    st.success("Thank you for visiting my portfolio!")
